@@ -14,6 +14,8 @@
 		85AAAFEC1F745E2600180B10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85AAAFEA1F745E2600180B10 /* LaunchScreen.storyboard */; };
 		85AAAFF71F745E2600180B10 /* apple_music_xmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAAFF61F745E2600180B10 /* apple_music_xmTests.swift */; };
 		85AAB0021F745E2600180B10 /* apple_music_xmUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB0011F745E2600180B10 /* apple_music_xmUITests.swift */; };
+		85AAB0121F7461DD00180B10 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AAB0111F7461DD00180B10 /* SwiftSoup.framework */; };
+		85AAB0141F7461E900180B10 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AAB0131F7461E900180B10 /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		85AAAFFD1F745E2600180B10 /* apple-music-xmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "apple-music-xmUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85AAB0011F745E2600180B10 /* apple_music_xmUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apple_music_xmUITests.swift; sourceTree = "<group>"; };
 		85AAB0031F745E2600180B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85AAB0111F7461DD00180B10 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSoup.framework; path = Carthage/Build/iOS/SwiftSoup.framework; sourceTree = "<group>"; };
+		85AAB0131F7461E900180B10 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85AAB0141F7461E900180B10 /* SwiftyJSON.framework in Frameworks */,
+				85AAB0121F7461DD00180B10 /* SwiftSoup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +87,7 @@
 				85AAAFF51F745E2600180B10 /* apple-music-xmTests */,
 				85AAB0001F745E2600180B10 /* apple-music-xmUITests */,
 				85AAAFDF1F745E2600180B10 /* Products */,
+				85AAB0101F7461DD00180B10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +132,15 @@
 			path = "apple-music-xmUITests";
 			sourceTree = "<group>";
 		};
+		85AAB0101F7461DD00180B10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85AAB0131F7461E900180B10 /* SwiftyJSON.framework */,
+				85AAB0111F7461DD00180B10 /* SwiftSoup.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +151,7 @@
 				85AAAFDA1F745E2600180B10 /* Sources */,
 				85AAAFDB1F745E2600180B10 /* Frameworks */,
 				85AAAFDC1F745E2600180B10 /* Resources */,
+				85AAB00F1F74617000180B10 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -253,6 +270,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		85AAB00F1F74617000180B10 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftSoup.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		85AAAFDA1F745E2600180B10 /* Sources */ = {
@@ -428,6 +463,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q6ETBD25S7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "apple-music-xm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jackfrysinger.apple-music-xm";
@@ -443,6 +482,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q6ETBD25S7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "apple-music-xm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jackfrysinger.apple-music-xm";
