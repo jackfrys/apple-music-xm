@@ -14,8 +14,9 @@
 		85AAAFEC1F745E2600180B10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85AAAFEA1F745E2600180B10 /* LaunchScreen.storyboard */; };
 		85AAAFF71F745E2600180B10 /* apple_music_xmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAAFF61F745E2600180B10 /* apple_music_xmTests.swift */; };
 		85AAB0021F745E2600180B10 /* apple_music_xmUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB0011F745E2600180B10 /* apple_music_xmUITests.swift */; };
-		85AAB0121F7461DD00180B10 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AAB0111F7461DD00180B10 /* SwiftSoup.framework */; };
 		85AAB0141F7461E900180B10 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AAB0131F7461E900180B10 /* SwiftyJSON.framework */; };
+		85AAB0171F7464EE00180B10 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB0161F7464EE00180B10 /* DataService.swift */; };
+		85AAB01A1F74A4DC00180B10 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AAB0111F7461DD00180B10 /* SwiftSoup.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		85AAB0031F745E2600180B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85AAB0111F7461DD00180B10 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSoup.framework; path = Carthage/Build/iOS/SwiftSoup.framework; sourceTree = "<group>"; };
 		85AAB0131F7461E900180B10 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		85AAB0161F7464EE00180B10 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85AAB01A1F74A4DC00180B10 /* SwiftSoup.framework in Frameworks */,
 				85AAB0141F7461E900180B10 /* SwiftyJSON.framework in Frameworks */,
-				85AAB0121F7461DD00180B10 /* SwiftSoup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +106,7 @@
 		85AAAFE01F745E2600180B10 /* apple-music-xm */ = {
 			isa = PBXGroup;
 			children = (
+				85AAB0161F7464EE00180B10 /* DataService.swift */,
 				85AAAFE11F745E2600180B10 /* AppDelegate.swift */,
 				85AAAFE31F745E2600180B10 /* ViewController.swift */,
 				85AAAFE51F745E2600180B10 /* Main.storyboard */,
@@ -294,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85AAB0171F7464EE00180B10 /* DataService.swift in Sources */,
 				85AAAFE41F745E2600180B10 /* ViewController.swift in Sources */,
 				85AAAFE21F745E2600180B10 /* AppDelegate.swift in Sources */,
 			);
