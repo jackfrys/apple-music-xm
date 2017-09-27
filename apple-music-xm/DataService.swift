@@ -12,13 +12,15 @@ import SwiftyJSON
 
 class DataService {
     
-    func getTracks(channel: Int, callback: @escaping ([Song]) -> Void) {
+    var delegate: DataServiceDelegate?
+    
+    func getTracks(channel: Int) {
         let url = URL(string: "http://www.dogstarradio.com/search_playlist.php?artist=&title=&channel=\(channel)&month=&date=&shour=&sampm=&stz=&ehour=&eampm=")!
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {(data, response, error) in self.parseXM(data: data, callback: callback)}
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {(data, response, error) in self.parseXM(data: data)}
         task.resume()
     }
     
-    func parseXM(data: Data?, callback: ([Song]) -> Void) {
+    func parseXM(data: Data?) {
         do {
             let html = try! SwiftSoup.parse(String(describing: NSString(data: data!, encoding: String.Encoding.utf8.rawValue)))
             let table = try! html.select("table").get(1).select("tr")
@@ -31,15 +33,13 @@ class DataService {
                     let title = try! song.select("td").get(2).text()
                     let song: Song = Song(artist: artist, title: title)
                     songs.append(song)
-                    getAppleMusicData(song: song)
+                    getAppleMusicData(song: song, songs: songs)
                 }
             }
-            callback(songs)
         }
     }
     
-    func getAppleMusicData(song: Song) {
-        var song = song
+    func getAppleMusicData(song: Song, songs: [Song]) {
         let url = URL(string: "https://itunes.apple.com/search?term=\(song.title.replacingOccurrences(of: " ", with: "+"))+\(song.artist.replacingOccurrences(of: " ", with: "+"))&entity=song")
         if let u = url {
             let task = URLSession.shared.dataTask(with: u) {(data, response, error) in
@@ -50,6 +50,14 @@ class DataService {
                         song.trackId = String(describing: result["trackId"])
                         song.title = String(describing: result["trackName"])
                         song.artist = String(describing: result["artistName"])
+                        
+                        self.delegate?.trackListUpdated(songs: songs.filter({song in
+                            if let tid = song.trackId {
+                                return tid != "null"
+                            } else {
+                                return false
+                            }
+                        }))
                     }
                 }
             }
@@ -58,7 +66,7 @@ class DataService {
     }
 }
 
-struct Song {
+class Song {
     var artist: String
     var title: String
     var trackId: String?
@@ -67,4 +75,8 @@ struct Song {
         self.artist = artist
         self.title = title
     }
+}
+
+protocol DataServiceDelegate {
+    func trackListUpdated(songs: [Song])
 }
