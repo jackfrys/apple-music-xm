@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import MediaPlayer
+import StoreKit
 
-class ViewController: UIViewController, UITableViewDataSource, DataServiceDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DataServiceDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
-    private var data: [Song]?
+    private var data = [Song]()
     private let dataService = DataService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        SKCloudServiceController.requestAuthorization({_ in return})
         dataService.delegate = self
         tableView.dataSource = self
+        tableView.delegate = self
         reload()
     }
 
@@ -30,15 +34,18 @@ class ViewController: UIViewController, UITableViewDataSource, DataServiceDelega
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-        cell.textLabel?.text = data?[indexPath.row].title
+        cell.textLabel?.text = data[indexPath.row].title
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let d = data {
-            return d.count
-        } else {
-            return 0
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if SKCloudServiceController.authorizationStatus() == SKCloudServiceAuthorizationStatus.authorized {
+            MPMusicPlayerController.systemMusicPlayer.setQueue(with: data[indexPath.row..<data.count].map({(song) in song.trackId!}))
+            MPMusicPlayerController.systemMusicPlayer.play()
         }
     }
     
