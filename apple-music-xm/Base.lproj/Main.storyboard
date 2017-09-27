@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLU-4R-nx5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Apple Music XM" id="Wau-SW-LMa"/>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GiS-ey-jUh">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="CBS-uC-3a8">
@@ -40,13 +40,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0sd-hj-jSd"/>
-                            <constraint firstItem="uLU-4R-nx5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1J1-vU-Zlj"/>
-                            <constraint firstItem="GiS-ey-jUh" firstAttribute="top" secondItem="uLU-4R-nx5" secondAttribute="bottom" id="3Sn-96-AIu"/>
-                            <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="GiS-ey-jUh" secondAttribute="leading" id="MFd-Cd-P25"/>
-                            <constraint firstItem="uLU-4R-nx5" firstAttribute="trailing" secondItem="GiS-ey-jUh" secondAttribute="trailing" id="eWT-Th-KCi"/>
-                            <constraint firstItem="GiS-ey-jUh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="jR0-TX-W5c"/>
-                            <constraint firstAttribute="trailing" secondItem="uLU-4R-nx5" secondAttribute="trailing" id="uab-jT-pdu"/>
+                            <constraint firstItem="uLU-4R-nx5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="AlD-iM-86b"/>
+                            <constraint firstItem="uLU-4R-nx5" firstAttribute="trailing" secondItem="GiS-ey-jUh" secondAttribute="trailing" id="DVi-m5-vja"/>
+                            <constraint firstItem="GiS-ey-jUh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="FzH-fT-Yxs"/>
+                            <constraint firstItem="GiS-ey-jUh" firstAttribute="top" secondItem="uLU-4R-nx5" secondAttribute="bottom" id="JOt-E5-STz"/>
+                            <constraint firstAttribute="trailing" secondItem="uLU-4R-nx5" secondAttribute="trailing" id="L5L-1f-5AP"/>
+                            <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VgT-c2-LLS"/>
+                            <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="GiS-ey-jUh" secondAttribute="leading" id="X3r-fF-wP6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
