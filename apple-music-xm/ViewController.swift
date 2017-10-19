@@ -13,9 +13,11 @@ import StoreKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DataServiceDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var channel: UILabel!
     
     private var data = [Song]()
     private let dataService = DataService()
+    private var currentStation = 53
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func forward(_ sender: Any) {
+        currentStation -= 1
+        reload()
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        currentStation += 1
+        reload()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
         cell.textLabel?.text = data[indexPath.row].title
@@ -50,7 +62,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func reload() {
-        dataService.getTracks(channel: 53)
+        channel.text = String(currentStation)
+        data = [Song]()
+        tableView.performSelector(onMainThread: #selector(tableView.reloadData), with: nil, waitUntilDone: false)
+        dataService.tracks(channel: currentStation)
     }
     
     func trackListUpdated(songs: [Song]) {

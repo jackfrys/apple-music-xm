@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +24,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GiS-ey-jUh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="CBS-uC-3a8">
@@ -37,20 +37,46 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KxV-fJ-He6">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="&lt;" id="xd0-4C-awC">
+                                        <connections>
+                                            <action selector="forward:" destination="BYZ-38-t0r" id="rFv-CH-Byu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="&gt;" id="Euz-ZY-40d">
+                                        <connections>
+                                            <action selector="back:" destination="BYZ-38-t0r" id="YJU-zu-kGm"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="53" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrO-er-lo2">
+                                <rect key="frame" x="338" y="32" width="21" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="uLU-4R-nx5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="AlD-iM-86b"/>
-                            <constraint firstItem="uLU-4R-nx5" firstAttribute="trailing" secondItem="GiS-ey-jUh" secondAttribute="trailing" id="DVi-m5-vja"/>
-                            <constraint firstItem="GiS-ey-jUh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="FzH-fT-Yxs"/>
-                            <constraint firstItem="GiS-ey-jUh" firstAttribute="top" secondItem="uLU-4R-nx5" secondAttribute="bottom" id="JOt-E5-STz"/>
-                            <constraint firstAttribute="trailing" secondItem="uLU-4R-nx5" secondAttribute="trailing" id="L5L-1f-5AP"/>
-                            <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VgT-c2-LLS"/>
-                            <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="GiS-ey-jUh" secondAttribute="leading" id="X3r-fF-wP6"/>
+                            <constraint firstItem="GiS-ey-jUh" firstAttribute="leading" secondItem="KxV-fJ-He6" secondAttribute="leading" id="6tu-0B-hb2"/>
+                            <constraint firstItem="GiS-ey-jUh" firstAttribute="top" secondItem="uLU-4R-nx5" secondAttribute="bottom" id="AsB-hS-Vj5"/>
+                            <constraint firstItem="KxV-fJ-He6" firstAttribute="top" secondItem="GiS-ey-jUh" secondAttribute="bottom" id="NND-Jy-3V9"/>
+                            <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="GiS-ey-jUh" secondAttribute="leading" id="RPH-5w-ZOc"/>
+                            <constraint firstAttribute="trailing" secondItem="uLU-4R-nx5" secondAttribute="trailing" id="Uy4-wj-sO0"/>
+                            <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aBY-rY-mmP"/>
+                            <constraint firstItem="uLU-4R-nx5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aNc-dg-297"/>
+                            <constraint firstItem="GiS-ey-jUh" firstAttribute="trailing" secondItem="KxV-fJ-He6" secondAttribute="trailing" id="mCP-jf-ZOf"/>
+                            <constraint firstItem="KxV-fJ-He6" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="nuz-le-U6L"/>
+                            <constraint firstItem="uLU-4R-nx5" firstAttribute="trailing" secondItem="GiS-ey-jUh" secondAttribute="trailing" id="qem-Ov-YbW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="channel" destination="ZrO-er-lo2" id="d5N-3h-fi1"/>
                         <outlet property="tableView" destination="GiS-ey-jUh" id="Mm9-B9-E7p"/>
                     </connections>
                 </viewController>

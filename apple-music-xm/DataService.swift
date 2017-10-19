@@ -13,14 +13,23 @@ import SwiftyJSON
 class DataService {
     
     var delegate: DataServiceDelegate?
+    var allSongs = [Int:[Song]]()
     
-    func getTracks(channel: Int) {
+    func tracks(channel: Int) {
+        if let tr = allSongs[channel] {
+            delegate?.trackListUpdated(songs: tr)
+        } else {
+            getTracks(channel: channel)
+        }
+    }
+    
+    private func getTracks(channel: Int) {
         let url = URL(string: "http://www.dogstarradio.com/search_playlist.php?artist=&title=&channel=\(channel)&month=&date=&shour=&sampm=&stz=&ehour=&eampm=")!
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {(data, response, error) in self.parseXM(data: data)}
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {(data, response, error) in self.parseXM(data: data, channel: channel)}
         task.resume()
     }
     
-    func parseXM(data: Data?) {
+    private func parseXM(data: Data?, channel: Int) {
         do {
             let html = try! SwiftSoup.parse(String(describing: NSString(data: data!, encoding: String.Encoding.utf8.rawValue)))
             let table = try! html.select("table").get(1).select("tr")
@@ -33,13 +42,29 @@ class DataService {
                     let title = try! song.select("td").get(2).text()
                     let song: Song = Song(artist: artist, title: title)
                     songs.append(song)
-                    getAppleMusicData(song: song, songs: songs)
                 }
             }
+            songs.removeLast()
+            getApplsMusicAllSongs(songIndex: 0, completed: songs, callback: {songs in
+                let filtered = songs.filter {$0.title != "null"}
+                self.allSongs[channel] = filtered
+                self.delegate?.trackListUpdated(songs: filtered)
+            })
         }
     }
     
-    func getAppleMusicData(song: Song, songs: [Song]) {
+    private func getApplsMusicAllSongs(songIndex: Int, completed: [Song], callback: @escaping (([Song]) -> Void)) {
+        if songIndex == completed.count {
+            callback(completed)
+            return
+        }
+        
+        getAppleMusicData(song: completed[songIndex], callback: {song in
+            self.getApplsMusicAllSongs(songIndex: songIndex + 1, completed: completed, callback: callback)
+        })
+    }
+    
+    private func getAppleMusicData(song: Song, callback: @escaping ((Song) -> Void)) {
         let url = URL(string: "https://itunes.apple.com/search?term=\(song.title.replacingOccurrences(of: " ", with: "+"))+\(song.artist.replacingOccurrences(of: " ", with: "+"))&entity=song")
         if let u = url {
             let task = URLSession.shared.dataTask(with: u) {(data, response, error) in
@@ -50,14 +75,7 @@ class DataService {
                         song.trackId = String(describing: result["trackId"])
                         song.title = String(describing: result["trackName"])
                         song.artist = String(describing: result["artistName"])
-                        
-                        self.delegate?.trackListUpdated(songs: songs.filter({song in
-                            if let tid = song.trackId {
-                                return tid != "null"
-                            } else {
-                                return false
-                            }
-                        }))
+                        callback(song)
                     }
                 }
             }
