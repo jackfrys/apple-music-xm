@@ -1,2 +1,2 @@
-github "SwiftyJSON/SwiftyJSON" "3.1.4"
-github "scinfu/SwiftSoup" "1.4.2"
+github "SwiftyJSON/SwiftyJSON" "4.0.0"
+github "scinfu/SwiftSoup" "1.5.9"

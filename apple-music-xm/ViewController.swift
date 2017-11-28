@@ -26,6 +26,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         dataService.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
+        
+        for i in 43...63 {
+            dataService.tracks(channel: i)
+        }
         reload()
     }
 
@@ -68,9 +72,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         dataService.tracks(channel: currentStation)
     }
     
-    func trackListUpdated(songs: [Song]) {
-        data = songs
-        tableView.performSelector(onMainThread: #selector(tableView.reloadData), with: nil, waitUntilDone: false)
+    func trackListUpdated(channel: Int, songs: [Song]) {
+        if (channel == currentStation) {
+            data = songs
+            tableView.performSelector(onMainThread: #selector(tableView.reloadData), with: nil, waitUntilDone: false)
+        }
     }
 }
 

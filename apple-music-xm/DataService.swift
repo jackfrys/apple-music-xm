@@ -17,7 +17,7 @@ class DataService {
     
     func tracks(channel: Int) {
         if let tr = allSongs[channel] {
-            delegate?.trackListUpdated(songs: tr)
+            delegate?.trackListUpdated(channel: channel, songs: tr)
         } else {
             getTracks(channel: channel)
         }
@@ -44,11 +44,14 @@ class DataService {
                     songs.append(song)
                 }
             }
+            if (songs.isEmpty) {
+                return
+            }
             songs.removeLast()
             getApplsMusicAllSongs(songIndex: 0, completed: songs, callback: {songs in
                 let filtered = songs.filter {$0.title != "null"}
                 self.allSongs[channel] = filtered
-                self.delegate?.trackListUpdated(songs: filtered)
+                self.delegate?.trackListUpdated(channel: channel, songs: filtered)
             })
         }
     }
@@ -96,5 +99,5 @@ class Song {
 }
 
 protocol DataServiceDelegate {
-    func trackListUpdated(songs: [Song])
+    func trackListUpdated(channel: Int, songs: [Song])
 }
