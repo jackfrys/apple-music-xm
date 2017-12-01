@@ -27,9 +27,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         tableView.delegate = self
         
-        for i in 43...63 {
-            dataService.tracks(channel: i)
-        }
+        dataService.tracks(channel: currentStation)
         reload()
     }
 
