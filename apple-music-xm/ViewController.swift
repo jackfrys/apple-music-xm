@@ -58,7 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if SKCloudServiceController.authorizationStatus() == SKCloudServiceAuthorizationStatus.authorized {
-            MPMusicPlayerController.systemMusicPlayer.setQueue(with: data[indexPath.row..<data.count].map({(song) in song.trackId!}))
+            MPMusicPlayerController.systemMusicPlayer.setQueue(with: data[indexPath.row..<data.count].map({(song) in song.trackId}))
             MPMusicPlayerController.systemMusicPlayer.play()
         }
     }

@@ -24,35 +24,28 @@ class DataService {
     }
     
     private func getTracks(channel: Int) {
-        let url = URL(string: "http://www.dogstarradio.com/search_playlist.php?artist=&title=&channel=\(channel)&month=&date=&shour=&sampm=&stz=&ehour=&eampm=")!
+        let url = URL(string: "http://radio-service.herokuapp.com/api/tracks/\(channel)")!
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {(data, response, error) in self.parseXM(data: data, channel: channel)}
         task.resume()
     }
     
     private func parseXM(data: Data?, channel: Int) {
-        do {
-            let html = try! SwiftSoup.parse(String(describing: NSString(data: data!, encoding: String.Encoding.utf8.rawValue)))
-            let table = try! html.select("table").get(1).select("tr")
-            var i = 0
-            var songs = [Song]()
-            for song in table {
-                i += 1
-                if i > 3 {
-                    let artist = try! song.select("td").get(1).text()
-                    let title = try! song.select("td").get(2).text()
-                    let song: Song = Song(artist: artist, title: title)
-                    songs.append(song)
+        var songs = [Song]()
+        if let d = data {
+            let results = JSON(d)
+            do {
+                if (results.count > 0) {
+                    let result = results[0]
+                    for track in result["tracks"].array! {
+                        let trackId = String(describing: track["trackId"])
+                        let title = String(describing: track["title"])
+                        let artist = String(describing: track["artist"])
+                        songs.append(Song(artist: artist, title: title, trackId: trackId))
+                    }
                 }
             }
-            if (songs.isEmpty) {
-                return
-            }
-            songs.removeLast()
-            getApplsMusicAllSongs(songIndex: 0, completed: songs, callback: {songs in
-                let filtered = songs.filter {$0.title != "null"}
-                self.allSongs[channel] = filtered
-                self.delegate?.trackListUpdated(channel: channel, songs: filtered)
-            })
+            
+            delegate?.trackListUpdated(channel: channel, songs: songs)
         }
     }
     
@@ -90,11 +83,12 @@ class DataService {
 class Song {
     var artist: String
     var title: String
-    var trackId: String?
+    var trackId: String
     
-    init(artist: String, title: String) {
+    init(artist: String, title: String, trackId: String) {
         self.artist = artist
         self.title = title
+        self.trackId = trackId
     }
 }
 
