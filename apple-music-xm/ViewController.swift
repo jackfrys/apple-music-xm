@@ -46,6 +46,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         reload()
     }
     
+    @IBAction func refresh(_ sender: Any) {
+        reload()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
         cell.textLabel?.text = data[indexPath.row].title

@@ -21,7 +21,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLU-4R-nx5">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Apple Music Aggr" id="Wau-SW-LMa"/>
+                                    <navigationItem title="Apple Music Aggr" id="Wau-SW-LMa">
+                                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="pUb-RE-zg6">
+                                            <connections>
+                                                <action selector="refresh:" destination="BYZ-38-t0r" id="98O-0J-zt9"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GiS-ey-jUh">
