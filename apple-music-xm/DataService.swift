@@ -23,6 +23,14 @@ class DataService {
         }
     }
     
+    func fetchFromSource(channel: Int) {
+        let url = URL(string: "http://radio-service.herokuapp.com/api/update/\(channel)")!
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {(data, response, error) in
+            
+        }
+        task.resume()
+    }
+    
     private func getTracks(channel: Int) {
         let url = URL(string: "http://radio-service.herokuapp.com/api/tracks/\(channel)")!
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {(data, response, error) in self.parseXM(data: data, channel: channel)}
