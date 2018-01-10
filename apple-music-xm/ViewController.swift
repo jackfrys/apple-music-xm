@@ -13,11 +13,12 @@ import StoreKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DataServiceDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var channel: UILabel!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     private var data = [Song]()
     private let dataService = DataService()
     private var currentStation = 53
+    private var currentName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,17 +69,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func reload() {
-        channel.text = String(currentStation)
         data = [Song]()
         tableView.performSelector(onMainThread: #selector(tableView.reloadData), with: nil, waitUntilDone: false)
         dataService.tracks(channel: currentStation)
     }
     
-    func trackListUpdated(channel: Int, songs: [Song]) {
+    func trackListUpdated(channel: Int, songs: [Song], stationName: String) {
+        currentName = "\(String(currentStation)) - \(stationName)"
         if (channel == currentStation) {
             data = songs
             tableView.performSelector(onMainThread: #selector(tableView.reloadData), with: nil, waitUntilDone: false)
+            self.performSelector(onMainThread: #selector(self.updateLabel), with: nil, waitUntilDone: false)
         }
+    }
+    
+    @objc func updateLabel() {
+        navBar.items?[0].title = currentName
     }
 }
 

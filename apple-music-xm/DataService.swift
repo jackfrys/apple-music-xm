@@ -14,10 +14,11 @@ class DataService {
     
     var delegate: DataServiceDelegate?
     var allSongs = [Int:[Song]]()
+    var stationNames = [String]()
     
     func tracks(channel: Int) {
         if let tr = allSongs[channel] {
-            delegate?.trackListUpdated(channel: channel, songs: tr)
+            delegate?.trackListUpdated(channel: channel, songs: tr, stationName: stationNames[channel])
         } else {
             getTracks(channel: channel)
         }
@@ -50,10 +51,9 @@ class DataService {
                         let artist = String(describing: track["artist"])
                         songs.append(Song(artist: artist, title: title, trackId: trackId))
                     }
+                    delegate?.trackListUpdated(channel: channel, songs: songs, stationName: result["name"].string!)
                 }
             }
-            
-            delegate?.trackListUpdated(channel: channel, songs: songs)
         }
     }
     
@@ -101,5 +101,5 @@ class Song {
 }
 
 protocol DataServiceDelegate {
-    func trackListUpdated(channel: Int, songs: [Song])
+    func trackListUpdated(channel: Int, songs: [Song], stationName: String)
 }

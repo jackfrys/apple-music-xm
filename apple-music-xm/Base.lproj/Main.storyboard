@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -59,33 +58,24 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="53" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrO-er-lo2">
-                                <rect key="frame" x="338" y="32" width="21" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uLU-4R-nx5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2hB-B2-QvN"/>
                             <constraint firstAttribute="trailing" secondItem="uLU-4R-nx5" secondAttribute="trailing" id="4bn-UE-AD1"/>
                             <constraint firstItem="GiS-ey-jUh" firstAttribute="top" secondItem="uLU-4R-nx5" secondAttribute="bottom" id="5xV-H3-q5M"/>
-                            <constraint firstItem="ZrO-er-lo2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="GBp-Ib-FPP"/>
                             <constraint firstItem="KxV-fJ-He6" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="PlT-ve-e8Q"/>
                             <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="RIV-Tw-cIL"/>
                             <constraint firstItem="KxV-fJ-He6" firstAttribute="top" secondItem="GiS-ey-jUh" secondAttribute="bottom" id="gRM-wB-dzK"/>
                             <constraint firstItem="uLU-4R-nx5" firstAttribute="trailing" secondItem="GiS-ey-jUh" secondAttribute="trailing" id="iKg-F8-6FU"/>
-                            <constraint firstItem="uLU-4R-nx5" firstAttribute="centerY" secondItem="ZrO-er-lo2" secondAttribute="centerY" id="lao-YO-GGQ"/>
                             <constraint firstItem="GiS-ey-jUh" firstAttribute="leading" secondItem="KxV-fJ-He6" secondAttribute="leading" id="nOY-xQ-Q4X"/>
                             <constraint firstItem="uLU-4R-nx5" firstAttribute="leading" secondItem="GiS-ey-jUh" secondAttribute="leading" id="ucH-KS-zeg"/>
-                            <constraint firstItem="ZrO-er-lo2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vQb-sp-sme"/>
                             <constraint firstItem="GiS-ey-jUh" firstAttribute="trailing" secondItem="KxV-fJ-He6" secondAttribute="trailing" id="xJY-xD-SyR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="channel" destination="ZrO-er-lo2" id="d5N-3h-fi1"/>
+                        <outlet property="navBar" destination="uLU-4R-nx5" id="PAi-cC-YpU"/>
                         <outlet property="tableView" destination="GiS-ey-jUh" id="Mm9-B9-E7p"/>
                     </connections>
                 </viewController>
