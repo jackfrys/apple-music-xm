@@ -7,6 +7,8 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
+fastlane/Appfile
+
 ## Build generated
 build/
 DerivedData/
