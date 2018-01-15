@@ -34,12 +34,12 @@ class ViewController: UITableViewController, DataServiceDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func forward(_ sender: Any) {
+    @IBAction func back(_ sender: Any) {
         currentStation -= 1
         reload()
     }
     
-    @IBAction func back(_ sender: Any) {
+    @IBAction func forward(_ sender: Any) {
         currentStation += 1
         reload()
     }
