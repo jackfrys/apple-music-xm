@@ -27,7 +27,7 @@ class DataService {
     func fetchFromSource(channel: Int) {
         let url = URL(string: "http://radio.jackfrysinger.com/api/update/\(channel)")!
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {(data, response, error) in
-            
+            self.delegate?.serverRefreshComplete(channel: channel)
         }
         task.resume()
     }
@@ -102,4 +102,6 @@ class Song {
 
 protocol DataServiceDelegate {
     func trackListUpdated(channel: Int, songs: [Song], stationName: String)
+    
+    func serverRefreshComplete(channel: Int)
 }

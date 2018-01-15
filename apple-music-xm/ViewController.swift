@@ -10,10 +10,7 @@ import UIKit
 import MediaPlayer
 import StoreKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DataServiceDelegate {
-
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var navBar: UINavigationBar!
+class ViewController: UITableViewController, DataServiceDelegate {
     
     private var data = [Song]()
     private let dataService = DataService()
@@ -51,17 +48,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         dataService.fetchFromSource(channel: currentStation)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
         cell.textLabel?.text = data[indexPath.row].title
         return cell
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if SKCloudServiceController.authorizationStatus() == SKCloudServiceAuthorizationStatus.authorized {
             MPMusicPlayerController.systemMusicPlayer.setQueue(with: data[indexPath.row..<data.count].map({(song) in song.trackId}))
             MPMusicPlayerController.systemMusicPlayer.play()
@@ -84,7 +81,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @objc func updateLabel() {
-        navBar.items?[0].title = currentName
+        navigationController!.navigationBar.items?[0].title = currentName
+    }
+    
+    func serverRefreshComplete(channel: Int) {
+        self.refreshControl?.performSelector(onMainThread: #selector(refreshControl?.endRefreshing), with: nil, waitUntilDone: false)
+        if currentStation == channel {
+            dataService.fetchFromSource(channel: currentStation)
+        }
     }
 }
 
