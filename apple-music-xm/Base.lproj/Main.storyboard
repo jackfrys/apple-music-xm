@@ -16,6 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="jA2-oj-WKx">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -29,10 +30,13 @@
                         <connections>
                             <outlet property="dataSource" destination="NP1-UN-hNj" id="gTx-Ay-vWV"/>
                             <outlet property="delegate" destination="NP1-UN-hNj" id="vE6-zP-fZ2"/>
+                            <outletCollection property="gestureRecognizers" destination="Wns-5K-oeK" appends="YES" id="tA2-2T-0xM"/>
+                            <outletCollection property="gestureRecognizers" destination="9a1-my-VBH" appends="YES" id="6kh-Sv-ITp"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="NgF-hn-NWY"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="lXm-w7-2gn">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <action selector="refresh:" destination="NP1-UN-hNj" eventType="valueChanged" id="KCh-8T-fe9"/>
@@ -40,6 +44,16 @@
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mnY-Wb-VHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Wns-5K-oeK">
+                    <connections>
+                        <action selector="back:" destination="NP1-UN-hNj" id="Tlf-gq-gqj"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="9a1-my-VBH">
+                    <connections>
+                        <action selector="forward:" destination="NP1-UN-hNj" id="CUm-DI-wX8"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1287.2" y="133.5832083958021"/>
         </scene>
