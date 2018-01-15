@@ -26,7 +26,7 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>radio-service.herokuapp.com</key>
+			<key>radio.jackfrysinger.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
