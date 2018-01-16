@@ -63,6 +63,7 @@ class ViewController: UITableViewController, DataServiceDelegate {
             MPMusicPlayerController.systemMusicPlayer.setQueue(with: data[indexPath.row..<data.count].map({(song) in song.trackId}))
             MPMusicPlayerController.systemMusicPlayer.play()
         }
+        tableView.cellForRow(at: indexPath)?.isSelected = false
     }
     
     func reload() {
