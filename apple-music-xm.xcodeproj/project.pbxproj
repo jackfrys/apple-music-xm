@@ -16,7 +16,6 @@
 		85AAB0021F745E2600180B10 /* apple_music_xmUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB0011F745E2600180B10 /* apple_music_xmUITests.swift */; };
 		85AAB0141F7461E900180B10 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AAB0131F7461E900180B10 /* SwiftyJSON.framework */; };
 		85AAB0171F7464EE00180B10 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB0161F7464EE00180B10 /* DataService.swift */; };
-		85AAB01A1F74A4DC00180B10 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AAB0111F7461DD00180B10 /* SwiftSoup.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +59,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85AAB01A1F74A4DC00180B10 /* SwiftSoup.framework in Frameworks */,
 				85AAB0141F7461E900180B10 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,7 +279,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftSoup.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
 			outputPaths = (

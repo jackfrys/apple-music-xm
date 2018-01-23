@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftSoup
 import SwiftyJSON
 
 class DataService {
